@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace ProyectoLenguajes_ProfessorAPI.Models;
 
@@ -19,7 +20,8 @@ public partial class Course
 
     public string? IdProfessor { get; set; }
 
+    [JsonIgnore]
     public virtual ICollection<CommentCourse> CommentCourses { get; set; } = new List<CommentCourse>();
-
+    [JsonIgnore]
     public virtual Professor? IdProfessorNavigation { get; set; }
 }

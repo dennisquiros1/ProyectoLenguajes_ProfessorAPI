@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace ProyectoLenguajes_ProfessorAPI.Models;
 
@@ -21,9 +22,12 @@ public partial class Professor
 
     public string? Expertise { get; set; }
 
+    [JsonIgnore]
     public virtual ICollection<ApplicationConsultation> ApplicationConsultations { get; set; } = new List<ApplicationConsultation>();
 
+    [JsonIgnore]
     public virtual ICollection<Course> Courses { get; set; } = new List<Course>();
 
+    [JsonIgnore]
     public virtual ICollection<PrivateConsultation> PrivateConsultations { get; set; } = new List<PrivateConsultation>();
 }

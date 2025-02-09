@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace ProyectoLenguajes_ProfessorAPI.Models;
 
@@ -13,5 +14,6 @@ public partial class CommentCourse
 
     public string? IdUser { get; set; }
 
-    public virtual Course AcronymNavigation { get; set; } = null!;
+    [JsonIgnore]
+    public virtual Course? AcronymNavigation { get; set; } = null!;
 }
