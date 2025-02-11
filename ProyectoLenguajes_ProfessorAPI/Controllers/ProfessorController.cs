@@ -38,5 +38,31 @@ namespace ProyectoLenguajes_ProfessorAPI.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<ActionResult<int>> Authenticate(string id, string password)
+        {
+            // Verificar si el profesor existe
+            var exists = await _context.Professors.AnyAsync(p => p.Id == id);
+            if (!exists)
+            {
+                return -1; // No existe el profesor
+            }
+
+            // Verificar si el ID y la contraseña coinciden
+            var match = await _context.Professors
+                .Where(p => p.Id == id && p.Password == password)
+                .Select(p => new { p.Name, p.Email })
+                .FirstOrDefaultAsync();
+
+            if (match != null)
+            {
+                return 1; // Autenticación exitosa
+            }
+
+            return 0; // Contraseña incorrecta
+        }
+
+
     }
 }
