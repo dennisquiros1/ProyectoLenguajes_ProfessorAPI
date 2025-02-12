@@ -64,5 +64,38 @@ namespace ProyectoLenguajes_ProfessorAPI.Controllers
         }
 
 
+        [HttpPut]
+        [Route("[action]")]
+        public async Task<IActionResult> EditProfessor(string id, [FromBody] Professor updatedProfessor)
+        {
+            var professor = await _context.Professors.FindAsync(id);
+            if (professor == null)
+            {
+                return NotFound("Profesor no encontrado.");
+            }
+
+            // Actualizar los campos permitidos
+            professor.Name = updatedProfessor.Name;
+            professor.LastName = updatedProfessor.LastName;
+            professor.Password = updatedProfessor.Password;
+            professor.Email = updatedProfessor.Email;
+            professor.Photo = updatedProfessor.Photo;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+                return Ok("Profesor actualizado correctamente.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Error al actualizar el profesor: {ex.Message}");
+            }
+        }
+
+
+
+
+
+
     }
 }
