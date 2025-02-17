@@ -17,7 +17,7 @@ public partial class PrivateConsultation
 
     public string? IdProfessor { get; set; }
 
-    public virtual Professor? IdProfessorNavigation { get; set; }
+    public Professor? IdProfessorNavigation { get; set; }
 
-    public virtual Student? IdStudentNavigation { get; set; }
+    public Student? IdStudentNavigation { get; set; }
 }
