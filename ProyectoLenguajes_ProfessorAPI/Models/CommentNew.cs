@@ -9,6 +9,8 @@ public partial class CommentNew
 
     public int? IdNew { get; set; }
 
+    public DateOnly? Date { get; set; }
+
     public string? IdUser { get; set; }
 
     public int NewIdCommentN { get; set; }

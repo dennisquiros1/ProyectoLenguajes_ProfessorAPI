@@ -12,6 +12,8 @@ public partial class CommentCourse
 
     public string Acronym { get; set; } = null!;
 
+    public DateOnly? Date { get; set; }
+
     public string? IdUser { get; set; }
 
     [JsonIgnore]

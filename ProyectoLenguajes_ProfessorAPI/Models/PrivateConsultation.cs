@@ -13,6 +13,8 @@ public partial class PrivateConsultation
 
     public string? Answer { get; set; }
 
+    public DateOnly? Date { get; set; }
+
     public string? IdStudent { get; set; }
 
     public string? IdProfessor { get; set; }

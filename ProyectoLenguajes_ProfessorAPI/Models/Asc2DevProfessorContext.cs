@@ -102,7 +102,7 @@ public partial class Asc2DevProfessorContext : DbContext
         {
             entity.HasKey(e => e.IdCommentC).HasName("PK_CommentCourses");
 
-            entity.ToTable("CommentCourse", "edu");
+            entity.ToTable("CommentCouse", "edu");
 
             entity.Property(e => e.Acronym).HasMaxLength(50);
             entity.Property(e => e.ContentC).HasMaxLength(500);

@@ -30,6 +30,7 @@ namespace ProyectoLenguajes_ProfessorAPI.Controllers
                         IdCommentC = commentItem.IdCommentC,
                         Acronym = commentItem.Acronym,
                         ContentC = string.IsNullOrEmpty(commentItem.ContentC) ? "[Comentario vacio]" : commentItem.ContentC,
+                        Date =  commentItem.Date,
                         IdUser = commentItem.IdUser
                     }).ToListAsync();
 
