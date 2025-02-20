@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace ProyectoLenguajes_ProfessorAPI.Models;
 
@@ -12,8 +13,8 @@ public partial class CommentNew
     public DateOnly? Date { get; set; }
 
     public string? IdUser { get; set; }
-
     public int NewIdCommentN { get; set; }
 
+    [JsonIgnore]
     public virtual BreakingNew? IdNewNavigation { get; set; }
 }
