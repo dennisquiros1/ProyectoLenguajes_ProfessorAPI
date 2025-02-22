@@ -131,6 +131,19 @@ namespace ProyectoLenguajes_ProfessorAPI.Controllers
         }
 
 
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<ActionResult<CommentNew>> PostComment(CommentNew comment)
+        {
+
+            _context.CommentNews.Add(comment);
+
+            await _context.SaveChangesAsync();
+
+            return Ok(comment);
+        }
+
+
     }
 
 
