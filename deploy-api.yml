@@ -1,0 +1,43 @@
+trigger:
+- master
+
+pool:
+  name: my_agent_pool
+
+steps:
+- task: DotNetCoreCLI@2
+  displayName: "Restauración"
+  inputs:
+    command: 'restore'
+    projects: '**/*.csproj'
+    feedsToUse: 'select'
+
+- task: DotNetCoreCLI@2
+  displayName: "Compilación"
+  inputs:
+    command: 'build'
+    projects: '**/*.csproj'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/ProyectoLenguajes_ProfessorAPI'
+
+- task: DotNetCoreCLI@2
+  displayName: "Publicación"
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    workingDirectory: '$(System.DefaultWorkingDirectory)/ProyectoLenguajes_ProfessorAPI'
+    arguments: --configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)
+
+- task: PublishBuildArtifacts@1
+  displayName: "Publicar API"
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'API'
+    publishLocation: 'Container'
+
+- task: AzureRmWebAppDeployment@5
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Azure subscription 1(9afab68a-66ca-4dab-a1ad-c92b01fe176c)'
+    appType: 'webApp'
+    WebAppName: 'APIProfessor'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
